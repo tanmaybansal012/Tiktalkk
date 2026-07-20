@@ -5,5 +5,9 @@
   "scripts": {
     "build": "npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix Frontend && npm run build --prefix Backend",
     "start": "npm start --prefix Backend"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.19",
+    "cors": "^2.8.6"
   }
 }
