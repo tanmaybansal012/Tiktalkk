@@ -5,7 +5,7 @@ import axios from "axios";
 import { io, Socket } from "socket.io-client";
 import { useChatStore } from "./useChatStore";
 
-const BASE_URL = window.location.origin;
+const BASE_URL = "https://tiktalkk.onrender.com";
 
 interface AuthUser {
   _id: string;
