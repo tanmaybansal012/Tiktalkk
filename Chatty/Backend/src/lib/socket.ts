@@ -7,7 +7,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://chatty-chat-app-2g7e.onrender.com",
+    origin: "https://tiktalkk.vercel.app",
     credentials: true,
     methods: ["GET", "POST"],
   },

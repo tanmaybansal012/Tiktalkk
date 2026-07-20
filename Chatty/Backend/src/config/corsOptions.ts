@@ -1,5 +1,5 @@
 const corsOptions = {
-  origin: "https://chatty-chat-app-2g7e.onrender.com",
+  origin: "https://tiktalkk.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],

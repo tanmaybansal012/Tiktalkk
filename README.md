@@ -1,6 +1,6 @@
 💬 Tiktalkk — Real-Time Chat Application
 
-Chatty is a full-stack real-time chat application built to provide fast, secure, and seamless communication between users. It supports one-to-one messaging with live updates, authentication, and a clean, responsive UI.
+TikTalkk is a full-stack real-time chat application built to provide fast, secure, and seamless communication between users. It supports one-to-one messaging with live updates, authentication, and a clean, responsive UI.
 
 🚀 Features
 
