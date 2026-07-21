@@ -1,7 +1,8 @@
-💬 Tiktalkk — Real-Time Chat Application
+# 💬 TikTalkk — Real-Time Chat Application
 
-TikTalkk is a full-stack real-time chat application built to provide fast, secure, and seamless communication between users. It supports one-to-one messaging with live updates, authentication, and a clean, responsive UI.
+**TikTalkk** is a modern, full-stack real-time chat application built to provide fast, secure, and seamless communication. It supports one-to-one messaging with instant updates, user authentication, and a clean, responsive UI.
 
+🚀 **Live Demo:** [tiktalkk](https://tiktalkk.vercel.app/login)
 🚀 Features
 
 🔐 User Authentication (Signup / Login)
