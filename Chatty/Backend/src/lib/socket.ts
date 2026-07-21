@@ -7,7 +7,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://tiktalkk.vercel.app",
+    origin: "https://tiktalkk.netlify.app",
     credentials: true,
     methods: ["GET", "POST"],
   },

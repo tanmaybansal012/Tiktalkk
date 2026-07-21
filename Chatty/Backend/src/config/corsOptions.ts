@@ -1,5 +1,5 @@
 const corsOptions = {
-  origin: "https://tiktalkk.vercel.app",
+  origin: "https://tiktalkk.netlify.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
