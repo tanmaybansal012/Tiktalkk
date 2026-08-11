@@ -9,7 +9,10 @@ const messageSchema = new Schema({
     receiverId: {
         type: Types.ObjectId,
         ref: "User",
-        required: true,
+    },
+    groupId: {
+        type: Types.ObjectId,
+        ref: "Group",
     },
     text: String,
     image: String,

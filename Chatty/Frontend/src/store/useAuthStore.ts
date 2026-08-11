@@ -4,8 +4,10 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { io, Socket } from "socket.io-client";
 import { useChatStore } from "./useChatStore";
+import { useFriendStore } from "./useFriendStore";
+import { useGroupStore } from "./useGroupStore";
 
-const BASE_URL = "https://tiktalkk.onrender.com";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5000" : "/";
 
 interface AuthUser {
   _id: string;
@@ -145,9 +147,16 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     socket.on("getOnlineUsers", (userIds) => {
       set({ onlineUsers: userIds })
     })
+
+    // Subscribe to friend system events
+    useFriendStore.getState().subscribeToFriendEvents();
+    // Subscribe to group events
+    useGroupStore.getState().subscribeToGroupEvents();
   },
 
   disconnectSocket: () => {
+    useFriendStore.getState().unsubscribeFromFriendEvents();
+    useGroupStore.getState().unsubscribeFromGroupEvents();
     const socket = get().socket;
     if (socket) {
       socket.disconnect();

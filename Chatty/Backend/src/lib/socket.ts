@@ -1,13 +1,15 @@
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
+import User from "../models/users";
+import Group from "../models/group";
 
 const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://tiktalkk.netlify.app",
+    origin: ["https://tiktalkk.netlify.app", "http://localhost:5173"],
     credentials: true,
     methods: ["GET", "POST"],
   },
@@ -19,22 +21,44 @@ export function getReceiverSocketId(userId: string) {
   return userSocketMap[userId];
 }
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
   console.log("User connected:", socket.id);
 
   const userId = socket.handshake.query.userId as string;
 
   if (userId) {
     userSocketMap[userId] = socket.id; // ✅ REAL mapping
+
+    // Auto-join all group rooms the user belongs to
+    try {
+      const groups = await Group.find({ members: userId }).select("_id");
+      for (const group of groups) {
+        socket.join(group._id.toString());
+      }
+    } catch (err) {
+      console.error("Failed to join group rooms:", err);
+    }
   }
 
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
-  socket.on("disconnect", () => {
+  // Allow a socket to join a new group room dynamically
+  socket.on("joinGroup", (groupId: string) => {
+    socket.join(groupId);
+  });
+
+  socket.on("disconnect", async () => {
     console.log("User disconnected:", socket.id);
 
     if (userId) {
       delete userSocketMap[userId];
+
+      // Persist lastSeen timestamp
+      try {
+        await User.findByIdAndUpdate(userId, { lastSeen: new Date() });
+      } catch (err) {
+        console.error("Failed to update lastSeen:", err);
+      }
     }
 
     io.emit("getOnlineUsers", Object.keys(userSocketMap));

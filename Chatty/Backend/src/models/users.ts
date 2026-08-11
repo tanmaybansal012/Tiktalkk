@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -18,6 +18,24 @@ const userSchema = new mongoose.Schema({
     profilePic: {
         type: String,
         default: ""
+    },
+    friends: [{
+        type: Types.ObjectId,
+        ref: "User",
+    }],
+    friendRequests: {
+        sent: [{
+            type: Types.ObjectId,
+            ref: "User",
+        }],
+        received: [{
+            type: Types.ObjectId,
+            ref: "User",
+        }],
+    },
+    lastSeen: {
+        type: Date,
+        default: Date.now,
     },
     },
     {

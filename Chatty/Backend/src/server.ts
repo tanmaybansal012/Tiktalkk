@@ -6,6 +6,9 @@ import cookieParser from 'cookie-parser'
 
 import authRouter from './routes/authRoute'
 import messageRouter from './routes/messageRoute'
+import userRouter from './routes/userRoute'
+import groupRouter from './routes/groupRoute'
+import aiRouter from './routes/aiRoute'
 import { app, server } from './lib/socket';
 import path from 'node:path';
 import corsOptions from './config/corsOptions.js'; // adjust path to wherever this file actually is
@@ -25,6 +28,9 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(express.static(frontendPath));
 app.use('/api/auth', authRouter);
 app.use('/api/messages', messageRouter);
+app.use('/api/users', userRouter);
+app.use('/api/groups', groupRouter);
+app.use('/api/ai', aiRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));

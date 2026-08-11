@@ -1,51 +1,61 @@
-💬 Tiktalkk — Real-Time Chat Application
+# 💬 TikTalkk — Real-Time AI-Powered Chat Application
 
-TikTalkk is a full-stack real-time chat application built to provide fast, secure, and seamless communication between users. It supports one-to-one messaging with live updates, authentication, and a clean, responsive UI.
+**TikTalkk** is a feature-rich, full-stack real-time chat application designed to provide fast, secure, and seamless communication. Built with a modern tech stack, it supports everything from dynamic one-to-one messaging and robust group chats to advanced Generative AI integrations for a smarter chatting experience.
 
-🚀 Features
+---
 
-🔐 User Authentication (Signup / Login)
-💬 Real-time Messaging using WebSockets
-🟢 Online / Offline User Status
-📸 Image Sharing in Chats
-👤 User Profiles
-🎨 Modern Responsive UI
-⚡ Optimized State Management
-🌐 Deployed Frontend & Backend
+## ✨ Main Features
 
+### 🤖 AI-Powered Capabilities (Google Gemini)
+- **Smart Replies:** Context-aware, AI-generated short replies are dynamically suggested when you receive a message, allowing for one-tap responses.
+- **Chat Summarizer:** Instantly summarize long chat histories. Generates a concise 3-sentence summary of the last 30 messages in both individual and group chats.
 
-🛠 Tech Stack:-
-Frontend:
+### 👥 Advanced Group Management
+- **Create & Manage Groups:** Seamlessly create group chats with your friends.
+- **Admin Roles:** Group creators are automatically assigned the "Creator" role. Admins can promote other members, remove users, and manage the group.
+- **Dynamic Group Photos:** Admins can effortlessly upload and update the group's profile photo in real-time.
 
-React + TypeScript
-Tailwind CSS + DaisyUI
-Zustand (state management)
-Socket.IO Client
+### 💬 Real-Time Messaging Engine
+- **Instant Delivery:** Powered by Socket.IO for zero-latency message broadcasting.
+- **Edit & Delete Messages:** Sent a typo? Hover over any message you've sent to instantly edit the text inline or permanently delete it. Updates sync live for all participants.
+- **Image Sharing:** Fully integrated with Cloudinary for fast and secure image uploads within chats.
 
-Backend:
+### 🔐 Secure & Engaging User Experience
+- **Friend System:** Send, accept, or reject friend requests to build your network securely.
+- **Online/Offline Status & Last Seen:** Track the real-time presence of your friends.
+- **JWT Authentication:** Robust and secure user authentication flow (Signup / Login).
+- **Responsive UI:** A beautifully crafted, mobile-friendly interface built with Tailwind CSS and DaisyUI.
 
-Node.js
-Express.js
-MongoDB + Mongoose
-Socket.IO
-JWT Authentication
+---
 
-Other Tools:
+## 🛠 Tech Stack
 
-Cloudinary (image uploads)
-Render (deployment)
+### Frontend
+- **React + TypeScript:** For a robust, type-safe, and scalable UI architecture.
+- **Tailwind CSS & DaisyUI:** For rapid, customizable, and elegant styling.
+- **Zustand:** Lightweight and fast global state management.
+- **Socket.IO Client:** For listening and emitting real-time events.
 
-🧠 How It Works
+### Backend
+- **Node.js & Express.js:** Scalable server architecture.
+- **MongoDB & Mongoose:** NoSQL database for flexible data modeling of users, messages, and groups.
+- **Socket.IO:** Real-time bi-directional communication.
+- **Google Generative AI SDK:** Integrates Gemini 2.5 Flash for smart replies and chat summarization.
+- **Cloudinary:** Cloud-based image management and CDN.
 
-Users authenticate using JWT-based authentication.
-After login, users can see other registered users and their online status.
-Messages are sent and received instantly using Socket.IO.
-Images are uploaded to Cloudinary and shared in chats.
-Backend manages socket connections to map users to active sessions.
+---
 
+## 🧠 How It Works Under the Hood
 
-Author:
+1. **Authentication:** Users securely authenticate via JWT tokens. Private routes protect sensitive data.
+2. **Real-time Syncing:** Once authenticated, the server maps the user's ID to their active Socket session.
+3. **Dedicated Rooms:** Group chats utilize Socket.IO rooms. Messages and edits are broadcast exclusively to connected members of that specific room.
+4. **AI Processing:** AI requests are safely offloaded to the backend controllers, ensuring your API keys remain secure while delivering smart context-aware text generation.
 
-Tanmay Bansal
-3rd Year Student, IIIT Allahabad
-🔗 GitHub: https://github.com/tanmaybansal012
+---
+
+## 👨‍💻 Author
+
+**Tanmay Bansal**  
+*3rd Year Student, IIIT Allahabad*  
+🔗 [GitHub Profile](https://github.com/tanmaybansal012)
