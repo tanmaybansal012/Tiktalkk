@@ -1,6 +1,8 @@
 # 💬 TikTalkk — Real-Time AI-Powered Chat Application
 
-**TikTalkk** is a feature-rich, full-stack real-time chat application designed to provide fast, secure, and seamless communication. Built with a modern tech stack, it supports everything from dynamic one-to-one messaging and robust group chats to advanced Generative AI integrations for a smarter chatting experience.
+**TikTalkk** is a modern, full-stack real-time chat application built to provide fast, secure, and seamless communication. It supports one-to-one messaging with instant updates, user authentication, and a clean, responsive UI. Built with a modern tech stack, it also integrates Generative AI features for a smarter chatting experience.
+
+🚀 **Live Demo:** [tiktalkk](https://tiktalkk.netlify.app)
 
 ---
 
