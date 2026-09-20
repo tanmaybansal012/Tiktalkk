@@ -30,6 +30,16 @@
 
 ---
 
+## 📸 Screenshots
+
+### AI-Suggested Replies
+![AI Suggested Replies](./screenshots/ai-suggested-replies.png)
+
+### Friend Requests
+![Friend Requests](./screenshots/friend-requests.png)
+
+---
+
 ## 🛠 Tech Stack
 
 ### Frontend

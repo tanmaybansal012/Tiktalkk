@@ -7,7 +7,7 @@ import { useChatStore } from "./useChatStore";
 import { useFriendStore } from "./useFriendStore";
 import { useGroupStore } from "./useGroupStore";
 
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5000" : "/";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5000" : "https://tiktalkk.onrender.com";
 
 interface AuthUser {
   _id: string;
