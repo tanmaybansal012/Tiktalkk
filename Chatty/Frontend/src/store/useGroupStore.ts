@@ -280,6 +280,15 @@ export const useGroupStore = create<GroupStore>((set, get) => ({
         const socket = getSocket()
         if (!socket) return
 
+        socket.off("newGroupMessage")
+        socket.off("messageEdited")
+        socket.off("messageDeleted")
+        socket.off("groupCreated")
+        socket.off("groupUpdated")
+        socket.off("addedToGroup")
+        socket.off("removedFromGroup")
+        socket.off("groupDeleted")
+
         socket.on("newGroupMessage", (newMessage: GroupMessage) => {
             const { selectedGroup } = get()
             if (selectedGroup && newMessage.groupId === selectedGroup._id) {

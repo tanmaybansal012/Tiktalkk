@@ -144,12 +144,16 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
     socket.on("getOnlineUsers", (userIds) => {
       set({ onlineUsers: userIds })
-    })
+    });
 
-    // Subscribe to friend system events
-    useFriendStore.getState().subscribeToFriendEvents();
-    // Subscribe to group events
-    useGroupStore.getState().subscribeToGroupEvents();
+    const subscribeToSocketEvents = () => {
+      useChatStore.getState().subscribeToMessages();
+      useFriendStore.getState().subscribeToFriendEvents();
+      useGroupStore.getState().subscribeToGroupEvents();
+    };
+
+    socket.on("connect", subscribeToSocketEvents);
+    if (socket.connected) subscribeToSocketEvents();
   },
 
   disconnectSocket: () => {
@@ -157,8 +161,10 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     useGroupStore.getState().unsubscribeFromGroupEvents();
     const socket = get().socket;
     if (socket) {
+      socket.off("connect");
+      socket.off("getOnlineUsers");
       socket.disconnect();
-      set({ socket: null });
+      set({ socket: null, onlineUsers: [] });
     }
   },
 }));
