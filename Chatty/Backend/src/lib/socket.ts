@@ -3,13 +3,16 @@ import http from "http";
 import express from "express";
 import User from "../models/users";
 import Group from "../models/group";
+import { isAllowedOrigin } from "../config/allowedOrigins";
 
 const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ["https://tiktalkk.netlify.app", "http://localhost:5173"],
+    origin: (origin: string | undefined, callback: (error: Error | null, allow?: boolean) => void) => {
+      callback(null, isAllowedOrigin(origin));
+    },
     credentials: true,
     methods: ["GET", "POST"],
   },
