@@ -137,6 +137,8 @@ export const useChatStore = create<ChatStore>((set, get) => ({
         if (!socket) return;
 
         socket.off("newMessage");
+        socket.off("messageEdited");
+        socket.off("messageDeleted");
 
         socket.on("newMessage", (newMessage: Message) => {
             set((state) => ({

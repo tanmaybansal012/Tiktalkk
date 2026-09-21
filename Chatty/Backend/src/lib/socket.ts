@@ -24,6 +24,23 @@ export function getReceiverSocketId(userId: string) {
   return userSocketMap[userId];
 }
 
+const broadcastOnlineFriends = async () => {
+  const connectedUserIds = Object.keys(userSocketMap);
+  const connectedUsers = new Set(connectedUserIds);
+
+  await Promise.all(connectedUserIds.map(async (userId) => {
+    const user = await User.findById(userId).select("friends").lean();
+    const onlineFriendIds = (user?.friends || [])
+      .map((friendId) => friendId.toString())
+      .filter((friendId) => connectedUsers.has(friendId));
+    const socketId = userSocketMap[userId];
+
+    if (socketId) {
+      io.to(socketId).emit("getOnlineUsers", onlineFriendIds);
+    }
+  }));
+};
+
 io.on("connection", async (socket) => {
   console.log("User connected:", socket.id);
 
@@ -43,7 +60,7 @@ io.on("connection", async (socket) => {
     }
   }
 
-  io.emit("getOnlineUsers", Object.keys(userSocketMap));
+  await broadcastOnlineFriends();
 
   // Allow a socket to join a new group room dynamically
   socket.on("joinGroup", (groupId: string) => {
@@ -54,7 +71,9 @@ io.on("connection", async (socket) => {
     console.log("User disconnected:", socket.id);
 
     if (userId) {
-      delete userSocketMap[userId];
+      if (userSocketMap[userId] === socket.id) {
+        delete userSocketMap[userId];
+      }
 
       // Persist lastSeen timestamp
       try {
@@ -64,7 +83,7 @@ io.on("connection", async (socket) => {
       }
     }
 
-    io.emit("getOnlineUsers", Object.keys(userSocketMap));
+    await broadcastOnlineFriends();
   });
 });
 
