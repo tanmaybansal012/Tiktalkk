@@ -1,13 +1,11 @@
 import { create } from "zustand";
-import { AxiosInstance } from "../lib/axios";
+import { AxiosInstance, BACKEND_URL } from "../lib/axios";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { io, Socket } from "socket.io-client";
 import { useChatStore } from "./useChatStore";
 import { useFriendStore } from "./useFriendStore";
 import { useGroupStore } from "./useGroupStore";
-
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5000" : "https://tiktalkk.onrender.com";
 
 interface AuthUser {
   _id: string;
@@ -136,7 +134,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;
 
-    const socket = io(BASE_URL, {
+    const socket = io(BACKEND_URL, {
       query: {
         userId: authUser._id
       },
